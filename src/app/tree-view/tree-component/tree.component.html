@@ -1,0 +1,15 @@
+<ul [ngClass]="{'tree-view': !isNested}" *ngIf="treeData">
+	<li *ngFor="let node of treeData">
+		<div>
+			<span class="action pointer" *ngIf="node.children.length != 0" (click)="toggleChild($event, node)">
+        <strong>{{ node.showChildren || expandAll ? '-' : '+' }}</strong>
+      </span>
+			<span class='pointer' [innerHTML]="node.data.name | highlightText : searchNode" (click)="nodeSelected(node)"></span>
+		</div>
+		<div class='nested-tree' *ngIf="node.children.length > 0"
+			[ngClass]="{'show-tree': expandAll || node.showChildren}">
+			<tree-comp [expandAll]="expandAll" [isNested]="true" [searchNode]="searchNode" [treeData]="node.children"
+				(onNodeSelected)="nodeSelected($event)"></tree-comp>
+		</div>
+	</li>
+</ul>

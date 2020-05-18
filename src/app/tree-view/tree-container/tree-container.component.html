@@ -1,0 +1,5 @@
+<div *ngIf="_treeData.length > 0; else elseBlock">
+	<tree-comp [treeData]="_treeData" [expandAll]="expandAll" [searchNode]="searchNode"
+		(onNodeSelected)="nodeSelected($event)"></tree-comp>
+</div>
+<ng-template #elseBlock>No results found.</ng-template>

@@ -1,0 +1,19 @@
+<hello name="{{ name }}"></hello>
+<p>
+	Start editing to see some magic happen :)
+</p>
+<p>
+  todo: add checkbox to each node
+</p>
+<input [(ngModel)]="_searchNodeStr"/>
+<button (click)="searchNode()">search node</button>
+<div>
+	<button (click)="expandAll()">expand all nodes</button>
+	<button (click)="collapseAll()">collapse all nodes</button>
+  <button (click)="clearSearch()">clear search</button>
+</div>
+
+<div #treeContainer class='tree-container'>
+	<tree-container #treeViewModel [treeData]="nodes" [scrollContainerRef]="treeContainer"
+		[expandAll]="expandAllNodes" (onNodeSelected)="logSelectedNode($event)"></tree-container>
+</div>
